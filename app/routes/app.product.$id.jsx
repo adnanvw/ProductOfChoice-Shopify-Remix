@@ -1,7 +1,7 @@
 import * as P from '@shopify/polaris';
 import { useLoaderData, useSubmit, useActionData } from "@remix-run/react";
 import { authenticate } from '../shopify.server';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export async function loader({ request }) {
     const url = new URL(request.url);
@@ -24,7 +24,7 @@ export async function action({ request }) {
         });
     }
 
-    const response = await admin.graphql(
+    await admin.graphql(
         `#graphql
         mutation CreateProductWithNewMedia($input: ProductInput!, $media: [CreateMediaInput!]) {
             productCreate(input: $input, media: $media) {
@@ -63,7 +63,6 @@ export default function ProductDetails() {
     const product = useLoaderData();
     const submit = useSubmit();
     const status = useActionData();
-    console.log("status", status);
 
     useEffect(() => {
         if (status == true) {
@@ -71,12 +70,15 @@ export default function ProductDetails() {
         }
     }, [status]);
 
+    const [loading, setLoading] = useState(false);
+
     return (
         <P.Page
             backAction={{ content: 'Go Back', url: '/app' }}
             title={product.title}
             primaryAction={
                 <P.Button
+                    loading={loading}
                     variant="primary"
                     onClick={handleSubmit}>
                     Add Product to Store
@@ -133,10 +135,11 @@ export default function ProductDetails() {
     )
 
     async function handleSubmit() {
-
+        setLoading(true);
         submit(
             { ...product },
             { replace: true, method: "POST" }
         );
+        setLoading(false);
     }
 }

@@ -2,7 +2,7 @@
 
 name = "product-of-choice"
 client_id = "bbef963958739695dd75ad2fbbdf8e7b"
-application_url = "https://prior-indonesia-teaching-evaluated.trycloudflare.com"
+application_url = "https://crawford-match-degree-intervention.trycloudflare.com"
 embedded = true
 
 [access_scopes]
@@ -11,9 +11,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://prior-indonesia-teaching-evaluated.trycloudflare.com/auth/callback",
-  "https://prior-indonesia-teaching-evaluated.trycloudflare.com/auth/shopify/callback",
-  "https://prior-indonesia-teaching-evaluated.trycloudflare.com/api/auth/callback"
+  "https://crawford-match-degree-intervention.trycloudflare.com/auth/callback",
+  "https://crawford-match-degree-intervention.trycloudflare.com/auth/shopify/callback",
+  "https://crawford-match-degree-intervention.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

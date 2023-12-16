@@ -60,7 +60,7 @@ export default function Index() {
 
   const rowMarkup = products.map(
     (
-      { id, title, brand, stock, category, price, thumbnail },
+      { id, title, brand, stock, category, price, thumbnail, rating },
       index,
     ) => (
       <P.IndexTable.Row
@@ -99,6 +99,11 @@ export default function Index() {
         </P.IndexTable.Cell>
         <P.IndexTable.Cell>
           <P.Text as="span" alignment="end">
+            {rating}
+          </P.Text>
+        </P.IndexTable.Cell>
+        <P.IndexTable.Cell>
+          <P.Text as="span" alignment="end">
             ${price}
           </P.Text>
         </P.IndexTable.Cell>
@@ -107,7 +112,7 @@ export default function Index() {
   );
 
   return (
-    <P.Page fullWidth>
+    <P.Page fullWidth title="Available Products">
       <P.Layout>
         <P.Layout.Section>
           <P.LegacyCard>
@@ -124,6 +129,7 @@ export default function Index() {
                 { title: 'Brand' },
                 { title: 'Stock', alignment: 'end' },
                 { title: 'Category', alignment: 'end' },
+                { title: 'Rating', alignment: 'end' },
                 { title: 'Price', alignment: 'end' },
               ]}
               selectable={false}
